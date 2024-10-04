@@ -1,0 +1,110 @@
+<form class="flex flex-col px-1 overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="projectZoneForm">
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="description" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Type</mat-label>
+    <input formControlName="type" matInput>
+  </mat-form-field>
+
+  <div class="fuse-mat-dense select-none">
+    <mat-checkbox class="mb-2" formControlName="national" [color]="'primary'">Non national</mat-checkbox>
+  </div>
+
+  <ng-container *ngIf="value.national">
+      <div class="flex w-full gap-4">
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Disctrict</mat-label>
+          <mat-select formControlName="district" multiple>
+            <mat-option *ngFor="let data of districts" [value]="data.id">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Gouvernorat</mat-label>
+          <mat-select formControlName="governorate" multiple>
+            <mat-option *ngFor="let data of governorates" [value]="data.id">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Délégation</mat-label>
+          <mat-select formControlName="delegation" multiple>
+            <mat-option *ngFor="let data of delegations" [value]="data.id">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Doyenné</mat-label>
+          <mat-select formControlName="deanship" multiple>
+            <mat-option *ngFor="let data of deanships" [value]="data.id">{{data.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  </ng-container>
+
+  <div class="fuse-mat-dense select-none">
+    <mat-checkbox class="mb-2" formControlName="landDisponibility" [color]="'primary'">Disponibilité du
+      foncier</mat-checkbox>
+  </div>
+
+  <ng-container *ngIf="value.landDisponibility">
+    <div class="flex w-full gap-4">
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Observations sur le foncier</mat-label>
+        <input formControlName="landObservation" matInput>
+      </mat-form-field>
+
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Justification de la libération du foncier</mat-label>
+        <textarea formControlName="landRelease" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+      </mat-form-field>
+    </div>
+  </ng-container>
+
+  <div class="fuse-mat-dense select-none">
+    <mat-checkbox class="mb-2" formControlName="projectRelated" [color]="'primary'">Existence projets
+      liés</mat-checkbox>
+  </div>
+
+  <ng-container *ngIf="value.projectRelated">
+    <div class="flex w-full gap-4">
+      <div class="flex w-full gap-4">
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Code projet(s) lié(s)</mat-label>
+          <input formControlName="projectCode" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Nom projet lié(s)</mat-label>
+          <input formControlName="projectName" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Type de lien</mat-label>
+          <input formControlName="projectLinkType" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom partie prenante</mat-label>
+      <input formControlName="stakeholderName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Email partie prenante</mat-label>
+      <input formControlName="stakeholderEmail" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Rôle de partie prenante</mat-label>
+      <input formControlName="stakeholderRole" matInput>
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex justify-end">
+    <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="!valid" type="submit"> Suivant </button>
+  </div>
+</form>

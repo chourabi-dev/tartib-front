@@ -1,0 +1,122 @@
+<div class="p-4 !block">
+
+  <section class="swiper-section h-120 mb-3">
+    <swiper class="h-full rounded-md overflow-hidden" [loop]="true" [autoHeight]="true" [allowTouchMove]="true"
+      [autoplay]="{ delay: 1000, disableOnInteraction: false }" [pagination]="{ clickable: true }" [navigation]="true">
+      <ng-template data-swiper-autoplay="6000" swiperSlide>
+        <div class="w-full h-full overflow-hidden">
+          <img class="h-full object-cover" src="https://placehold.co/1600x650" alt="img">
+        </div>
+      </ng-template>
+
+      <ng-template data-swiper-autoplay="10000" class="swiper-slide" swiperSlide>
+        <div class="w-full h-full overflow-hidden">
+          <img class="h-full object-cover" src="https://placehold.co/1600x650" alt="img">
+        </div>
+      </ng-template>
+
+      <ng-template data-swiper-autoplay="60000" swiperSlide>
+        <div class="w-full h-full overflow-hidden">
+          <div>
+            <img class="h-full object-cover" src="https://placehold.co/1600x650" alt="img">
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+  </section>
+
+  <section class="article-list mb-3">
+
+    <div class="mb-3">
+      <div class="text-2xl font-bold tracking-tight leading-none">Nouveaux Articles</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4">
+      <fuse-card [routerLink]="['/home/1']" routerLinkActive="router-link-active"  class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/03-320x200.jpg" alt="Card cover image">
+        <div class="m-4">
+          <div class="text-md font-semibold leading-none tracking-wide text-primary mb-1">Other</div>
+          <div class="text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="assets/images/cards/avatar-400x400.jpg" alt="Card cover image">
+            <div class="flex flex-col ml-3">
+              <span class="font-medium leading-none">Galen Lewis</span>
+              <span class="text-sm text-secondary leading-none mt-1">23 hours ago</span>
+            </div>
+          </div>
+        </div>
+      </fuse-card>
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/03-320x200.jpg" alt="Card cover image">
+        <div class="m-4">
+          <div class="text-md font-semibold leading-none tracking-wide text-primary mb-1">Work</div>
+          <div class="text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="assets/images/cards/avatar-400x400.jpg" alt="Card cover image">
+            <div class="flex flex-col ml-3">
+              <span class="font-medium leading-none">Galen Lewis</span>
+              <span class="text-sm text-secondary leading-none mt-1">23 hours ago</span>
+            </div>
+          </div>
+        </div>
+      </fuse-card>
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/03-320x200.jpg" alt="Card cover image">
+        <div class="m-4">
+          <div class="text-md font-semibold leading-none tracking-wide text-primary mb-1">Economics</div>
+          <div class="text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="assets/images/cards/avatar-400x400.jpg" alt="Card cover image">
+            <div class="flex flex-col ml-3">
+              <span class="font-medium leading-none">Galen Lewis</span>
+              <span class="text-sm text-secondary leading-none mt-1">23 hours ago</span>
+            </div>
+          </div>
+        </div>
+      </fuse-card>
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/03-320x200.jpg" alt="Card cover image">
+        <div class="m-4">
+          <div class="text-md font-semibold leading-none tracking-wide text-primary mb-1">Finance</div>
+          <div class="text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+          <div class="flex items-center mt-6">
+            <img class="w-10 h-10 rounded-full" src="assets/images/cards/avatar-400x400.jpg" alt="Card cover image">
+            <div class="flex flex-col ml-3">
+              <span class="font-medium leading-none">Galen Lewis</span>
+              <span class="text-sm text-secondary leading-none mt-1">23 hours ago</span>
+            </div>
+          </div>
+        </div>
+      </fuse-card>
+    </div>
+
+  </section>
+
+  <section class="article-list mb-3">
+
+    <div class="mb-3">
+      <div class="text-2xl font-bold tracking-tight leading-none">Articles economics</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-4">
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/06-320x200.jpg" alt="Card cover image">
+        <div class="m-4 text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+      </fuse-card>
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/06-320x200.jpg" alt="Card cover image">
+        <div class="m-4 text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+      </fuse-card>
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/06-320x200.jpg" alt="Card cover image">
+        <div class="m-4 text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+      </fuse-card>
+      <fuse-card [routerLink]="['/home/1']" class="flex flex-col max-w-80 w-full filter-article">
+        <img class="object-cover" src="assets/images/cards/06-320x200.jpg" alt="Card cover image">
+        <div class="m-4 text-xl font-semibold leading-tight">Most beautiful and quite places to see</div>
+      </fuse-card>
+    </div>
+
+  </section>
+
+</div>

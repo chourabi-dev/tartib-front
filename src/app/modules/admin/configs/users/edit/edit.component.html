@@ -1,0 +1,80 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+      <div class="flex-1 min-w-0">
+        <!-- Breadcrumbs -->
+        <div class="flex flex-wrap items-center font-medium">
+          <div>
+            <a class="whitespace-nowrap text-primary-500">Utilisateurs</a>
+          </div>
+          <div class="flex items-center ml-1 whitespace-nowrap">
+            <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_mini:chevron-right'"></mat-icon>
+            <a class="ml-1 text-primary-500">Modifier</a>
+          </div>
+        </div>
+        <!-- Title -->
+        <div class="mt-2">
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+            <ng-container>
+              <h1>Modifier Utilisateur</h1>
+            </ng-container>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto p-4">
+      <form class="flex flex-col bg-card p-4 shadow overflow-hidden rounded" (ngSubmit)="validSubmit()" [formGroup]="userForm">
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Prénom</mat-label>
+            <input formControlName="firstname" matInput>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Nom</mat-label>
+            <input formControlName="lastname" matInput>
+          </mat-form-field>
+        </div>
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Username</mat-label>
+            <input formControlName="username" matInput>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput>
+          </mat-form-field>
+        </div>
+        <div class="flex w-full gap-4">
+          <mat-form-field class="w-full">
+            <mat-label>Mot de passe</mat-label>
+            <input formControlName="password" id="password" matInput type="password" #passwordField>
+            <button mat-icon-button type="button" (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'" matSuffix>
+              <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'" [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+              <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'" [svgIcon]="'heroicons_solid:eye-slash'"></mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Confirmer mot de passe</mat-label>
+            <input formControlName="confirmPassword" id="password" matInput type="password" #passwordFieldConfirm>
+            <button mat-icon-button type="button" (click)="passwordFieldConfirm.type === 'password' ? passwordFieldConfirm.type = 'text' : passwordFieldConfirm.type = 'password'" matSuffix>
+              <mat-icon class="icon-size-5" *ngIf="passwordFieldConfirm.type === 'password'" [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+              <mat-icon class="icon-size-5" *ngIf="passwordFieldConfirm.type === 'text'" [svgIcon]="'heroicons_solid:eye-slash'"></mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-row gap-4">
+          <mat-checkbox class="fuse-mat-dense select-none" [checked]="true" [color]="'primary'">Actif</mat-checkbox>
+          <mat-checkbox class="fuse-mat-dense select-none" [checked]="false" [color]="'primary'">Confirmer</mat-checkbox>
+          <mat-checkbox class="fuse-mat-dense select-none" [checked]="false" [color]="'primary'">Bloquer</mat-checkbox>
+        </div>
+        <div class="flex justify-end">
+          <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="!valid" type="submit"> Valider </button>
+        </div>
+      </form>
+    </div>
+
+
+  </div>

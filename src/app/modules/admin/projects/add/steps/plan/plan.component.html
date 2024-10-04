@@ -1,0 +1,176 @@
+<mat-tab-group mat-stretch-tabs="true" [animationDuration]="'0'" ta>
+  <mat-tab label="Financement">
+    <ng-template matTabContent>
+      <form class="flex flex-col overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="projectPlanForm">
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Nature économique</mat-label>
+            <mat-select formControlName="economicNature">
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Cout total</mat-label>
+            <input formControlName="amount" matInput>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Devise</mat-label>
+            <mat-select formControlName="currency">
+              <mat-option *ngFor="let data of currencies" [value]="data.id">{{data.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Taux de change</mat-label>
+            <input formControlName="exchangeRate" matInput>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Intitulé rubrique</mat-label>
+            <mat-select formControlName="itemTitle">
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Cout rubrique en devise</mat-label>
+            <input formControlName="itemLocalCost" matInput>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Cout rubrique en DTN</mat-label>
+            <input formControlName="itemEquivalentCost" matInput>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Intitulé source financement</mat-label>
+            <mat-select formControlName="fundingSource">
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Type source financement</mat-label>
+            <mat-select formControlName="fundingSourceType">
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Budget initial</mat-label>
+            <input formControlName="fundingAmount" matInput>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Devise</mat-label>
+            <mat-select formControlName="fundingCurrency">
+              <mat-option *ngFor="let data of currencies" [value]="data.id">{{data.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Montant en devise</mat-label>
+            <input formControlName="fundingLocalAmount" matInput>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Montant en DTN</mat-label>
+            <input formControlName="fundingEquivalentAmount" matInput>
+          </mat-form-field>
+        </div>
+
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Durée début du financement</mat-label>
+            <input formControlName="fundingStart" matInput [matDatepicker]="fundingStart">
+            <mat-datepicker-toggle matSuffix [for]="fundingStart"></mat-datepicker-toggle>
+            <mat-datepicker #fundingStart></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Durée fin du financement</mat-label>
+            <input formControlName="fundingEnd" matInput [matDatepicker]="fundingEnd">
+            <mat-datepicker-toggle matSuffix [for]="fundingEnd"></mat-datepicker-toggle>
+            <mat-datepicker #fundingEnd></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="fuse-mat-dense w-full">
+          <mat-label>Justification accord financement</mat-label>
+          <textarea formControlName="fundingAgreement" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+        </mat-form-field>
+
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date mise en vigueur</mat-label>
+            <input formControlName="effectiveDate" matInput [matDatepicker]="effectiveDate">
+            <mat-datepicker-toggle matSuffix [for]="effectiveDate"></mat-datepicker-toggle>
+            <mat-datepicker #effectiveDate></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date d'envoi à la présidence du Gouvernement</mat-label>
+            <input formControlName="sendingDate" matInput [matDatepicker]="sendingDate">
+            <mat-datepicker-toggle matSuffix [for]="sendingDate"></mat-datepicker-toggle>
+            <mat-datepicker #sendingDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date d'approbation au Conseil des ministres</mat-label>
+            <input formControlName="approvalDate" matInput [matDatepicker]="approvalDate">
+            <mat-datepicker-toggle matSuffix [for]="approvalDate"></mat-datepicker-toggle>
+            <mat-datepicker #approvalDate></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date d'envoi à l'ARP</mat-label>
+            <input formControlName="arpDate" matInput [matDatepicker]="arpDate">
+            <mat-datepicker-toggle matSuffix [for]="arpDate"></mat-datepicker-toggle>
+            <mat-datepicker #arpDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date de ratification Commission spécialisée</mat-label>
+            <input formControlName="ratificationDate" matInput [matDatepicker]="ratificationDate">
+            <mat-datepicker-toggle matSuffix [for]="ratificationDate"></mat-datepicker-toggle>
+            <mat-datepicker #ratificationDate></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date de la ratification session plénière </mat-label>
+            <input formControlName="plenaryDate" matInput [matDatepicker]="plenaryDate">
+            <mat-datepicker-toggle matSuffix [for]="plenaryDate"></mat-datepicker-toggle>
+            <mat-datepicker #plenaryDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="flex w-full gap-4">
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Date de la publication au JORT</mat-label>
+            <input formControlName="ortDate" matInput [matDatepicker]="ortDate">
+            <mat-datepicker-toggle matSuffix [for]="ortDate"></mat-datepicker-toggle>
+            <mat-datepicker #ortDate></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="fuse-mat-dense w-full">
+            <mat-label>Numéro du JORT</mat-label>
+            <input formControlName="ortNumber" matInput>
+          </mat-form-field>
+        </div>
+
+        <div class="flex justify-end">
+          <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="false" type="submit"> Suivant </button>
+        </div>
+      </form>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Composantes" [disabled]="projectPlanData == null">
+    <ng-template matTabContent>
+      <app-components [projectPlanData]="projectPlanData"></app-components>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Extensions" [disabled]="projectPlanData == null">
+    <ng-template matTabContent>
+      <app-extensions [projectPlanData]="projectPlanData"></app-extensions>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

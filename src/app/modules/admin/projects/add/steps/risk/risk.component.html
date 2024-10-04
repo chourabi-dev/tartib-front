@@ -1,0 +1,118 @@
+<form class="flex flex-col px-1 overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="riskForm">
+
+  <!--<div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Intitulé du risque</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Catégorie</mat-label>
+      <mat-select formControlName="category">
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="description" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Probabilité</mat-label>
+      <input formControlName="probability" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Impact</mat-label>
+      <input formControlName="impact" matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Degré Gravité</mat-label>
+      <input formControlName="gravity" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Mesure Mitigation</mat-label>
+      <input formControlName="mitigation" matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Commentaires</mat-label>
+    <textarea formControlName="comments" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+  
+ 
+  -->
+
+
+
+  <div *ngIf=" data.length != 0 " >
+    <div class="ml-2 lg:ml-0 text-xl w-full font-bold tracking-tight leading-none">Risques</div>
+
+    <table class="table"> 
+        <tr *ngFor="let c of data">
+            <td>{{c.category}}</td>
+            <td>{{c.title}}</td>
+            <td>{{c.descreption}}</td>
+            <td>{{c.occurance}}</td>
+            <td>{{c.mitigation}}</td>
+            
+            <td>
+                <button class="px-8" mat-flat-button      type="button" (click)="deleteDATA(j)" > Supprimer </button> 
+            </td>
+        </tr>
+    </table> 
+
+  </div>
+
+
+
+
+
+  <div class="ml-2 lg:ml-0 text-xl w-full font-bold tracking-tight leading-none">Identification</div>
+
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Catégorie</mat-label>
+    <mat-select formControlName="category">
+        <mat-option value="DATA">DATA</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Intitulé</mat-label>
+    <mat-select formControlName="title">
+      <mat-option value="DATA">DATA</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Descreption</mat-label>
+    <textarea formControlName="descreption" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="ml-2 lg:ml-0 text-xl w-full font-bold tracking-tight leading-none">Evaluation de risk</div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Probalité d’occurance</mat-label>
+    <mat-select formControlName="occurance">
+      <mat-option value="DATA">DATA</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <div class="ml-2 lg:ml-0 text-xl w-full font-bold tracking-tight leading-none">Mitigation</div>
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Mesure mitigation</mat-label>
+    <textarea formControlName="mitigation" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex justify-end">
+    <button class="px-8" mat-flat-button [color]="'accent'"     type="button" (click)="addData()" > Ajouter </button> 
+    <button class="px-8" mat-flat-button [color]="'primary'"   type="submit"> Suivant </button>
+  </div>
+</form>

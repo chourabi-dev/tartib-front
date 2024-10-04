@@ -1,0 +1,157 @@
+<form class="flex flex-col px-1 overflow-hidden"  (ngSubmit)="validSubmit()" [formGroup]="projectIdentityForm">
+
+  <mat-form-field  [ngClass]="{'hidden': !isEdit}" class="fuse-mat-dense w-full">
+    <mat-label>Code du projet</mat-label>
+    <input  readonly disabled formControlName="code" matInput>
+  </mat-form-field> 
+  <div class="flex w-full gap-4">
+  
+  <mat-form-field class="fuse-mat-dense w-6/12">
+    <mat-label>Secteur</mat-label>
+    <mat-select formControlName="sector">
+        <mat-option *ngFor="let data of sectors" [value]="data.id">{{data.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+ 
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom du projet</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="description" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Type du projet</mat-label>
+      <mat-select formControlName="typology">
+        <mat-option *ngFor="let data of  typologies" [value]="data.id">{{data.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Catégorie  d'ouvrage</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let data of categories " [value]="data.id">{{data.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-3/12">
+      <mat-label>Code ministère</mat-label>
+      <mat-select formControlName="minister" (selectionChange)="findMinistreByCode($event.value)">
+        <mat-option *ngFor="let data of ministers" [value]="data.id">{{data.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom du ministère</mat-label>
+      <input readonly disabled formControlName="ministerName" matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-divider title="Organisation" class="w-full my-2"></mat-divider>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Oraganisme</mat-label>
+    <mat-select formControlName="organisation">
+        <mat-option *ngFor="let data of organisations" [value]="data.id">{{data.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>District</mat-label>
+      <mat-select formControlName="districts" multiple (selectionChange)="onDistrictChange()">
+        <mat-option (click)="toggleAllSelection('districts')">Select All</mat-option>
+        <mat-option *ngFor="let district of districts" [value]="district.id">{{district.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Governorate</mat-label>
+      <mat-select formControlName="governorates" multiple (selectionChange)="onGovernorateChange()">
+        <mat-option (click)="toggleAllSelection('governorates')">Select All</mat-option>
+        <mat-option *ngFor="let governorate of governorates" [value]="governorate.id">{{governorate.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Delegation</mat-label>
+      <mat-select formControlName="delegations" multiple (selectionChange)="onDelegationChange()">
+        <mat-option (click)="toggleAllSelection('delegations')">Select All</mat-option>
+        <mat-option *ngFor="let delegation of delegations" [value]="delegation.id">{{delegation.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Deanship</mat-label>
+      <mat-select formControlName="deanships" multiple>
+        <mat-option (click)="toggleAllSelection('deanships')">Select All</mat-option>
+        <mat-option *ngFor="let deanship of deanships" [value]="deanship.id">{{deanship.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom responsable</mat-label>
+      <input formControlName="responsibleName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>E-mail responsable</mat-label>
+      <input formControlName="responsibleEmail" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Tel responsable</mat-label>
+      <input formControlName="responsiblePhone" matInput     mask="(000) 00-000-000" 
+      placeholder="Entrez le numéro de téléphone">
+      <mat-error *ngIf="getResponsiblePhoneControl().hasError('min') || getResponsiblePhoneControl().touched || getResponsiblePhoneControl().dirty ">
+        Le numéro de téléphone doit contenir exactement 11 chiffres.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Nom d'unité de gestion</mat-label>
+    <input formControlName="managementUnitName" matInput>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom chef de projet</mat-label>
+      <input formControlName="projectManagerName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>E-mail chef de projet</mat-label>
+      <input formControlName="projectManagerEmail" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Tel chef de projet</mat-label>
+      <input formControlName="projectManagerPhone" matInput>
+    </mat-form-field>
+  </div>
+
+  <!-- <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom bureau d'AMO</mat-label>
+      <input formControlName="projectOwnerName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>E-mail AMO</mat-label>
+      <input formControlName="projectOwnerEmail" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Tel AMO</mat-label>
+      <input formControlName="projectOwnerPhone" matInput>
+    </mat-form-field>
+  </div> -->
+
+
+
+  <div class="flex justify-end">
+    <button class="px-8" mat-flat-button [color]="'accent'" [disabled]="!true"   type="submit" > Enregistrer </button> 
+    <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="!valid" type="submit"> Suivant </button>
+  </div>
+</form>

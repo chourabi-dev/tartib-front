@@ -1,0 +1,109 @@
+<form class="flex flex-col px-1 overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="projectStrategyForm">
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom plan national de développement</mat-label>
+      <mat-select formControlName="pnd">
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Axe plan national de développement</mat-label>
+      <mat-select formControlName="pndAxis">
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom Politique sectorielle</mat-label>
+      <mat-select formControlName="strategy">
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Axe politique sectorielle</mat-label>
+      <mat-select formControlName="strategyAxis">
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom schéma d'aménagement du territoire</mat-label>
+      <input formControlName="shemaName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Référence du projet dans le schéma d'aménagement du territoire</mat-label>
+      <input formControlName="shemaProject" matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Référence du projet dans le plan national de développement</mat-label>
+    <input formControlName="pndProject" matInput>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom plan de développement local</mat-label>
+      <input formControlName="blueprintName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Référence du projet dans le plan de développement local</mat-label>
+      <input formControlName="blueprintProject" matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Objectif(s) du projet</mat-label>
+      <textarea formControlName="objective" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Resultat(s) attendu(s)</mat-label>
+      <textarea formControlName="result" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Composantes</mat-label>
+    <input formControlName="components" matInput>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense">
+    <mat-label>Document cadre logique</mat-label>
+    <textarea formControlName="document" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Date début de réalisation</mat-label>
+        <input formControlName="realisationStart" matInput [matDatepicker]="realisationStart">
+        <mat-datepicker-toggle matSuffix [for]="realisationStart"></mat-datepicker-toggle>
+        <mat-datepicker #realisationStart></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Date fin de réalisation</mat-label>
+        <input formControlName="realisationEnd" matInput [matDatepicker]="realisationEnd">
+        <mat-datepicker-toggle matSuffix [for]="realisationEnd"></mat-datepicker-toggle>
+        <mat-datepicker #realisationEnd></mat-datepicker>
+      </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Date début d'exploitation</mat-label>
+    <input formControlName="operationStart" matInput [matDatepicker]="operationStart">
+    <mat-datepicker-toggle matSuffix [for]="operationStart"></mat-datepicker-toggle>
+    <mat-datepicker #operationStart></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Plan de travail</mat-label>
+    <input formControlName="workplan" matInput>
+  </mat-form-field>
+
+
+
+  <div class="flex justify-end">
+    <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="!valid" type="submit"> Suivant </button>
+  </div>
+</form>

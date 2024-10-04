@@ -1,0 +1,75 @@
+<form class="flex flex-col px-1 overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="projectStudyForm">
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Intitulé de l'étude</mat-label>
+      <input formControlName="title" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>État de l'étude</mat-label>
+      <mat-select formControlName="status">
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Observations de l'Etat de l'étude</mat-label>
+    <textarea formControlName="observation" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Date de réalisation</mat-label>
+      <input formControlName="realisationDate" matInput [matDatepicker]="realisationDate">
+      <mat-datepicker-toggle matSuffix [for]="realisationDate"></mat-datepicker-toggle>
+      <mat-datepicker #realisationDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Date d'actualisation</mat-label>
+      <input formControlName="actualisationDate" matInput [matDatepicker]="actualisationDate">
+      <mat-datepicker-toggle matSuffix [for]="actualisationDate"></mat-datepicker-toggle>
+      <mat-datepicker #actualisationDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom du bureau d'étude</mat-label>
+      <input formControlName="officeName" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>E-mail bureau d'étude</mat-label>
+      <input formControlName="officeEmail" matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Rapport</mat-label>
+    <textarea formControlName="report" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex w-full gap-4">
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Intitulé autorisation</mat-label>
+      <input formControlName="autorisationTitle" matInput>
+    </mat-form-field>
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Nom entité autorisatrice</mat-label>
+      <input formControlName="autorisationOffice" matInput>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Document d'autorisation</mat-label>
+    <textarea formControlName="autorisationDocument" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Observations</mat-label>
+    <textarea formControlName="autorisationObservation" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <div class="flex justify-end">
+    <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="false" type="submit"> Suivant </button>
+  </div>
+</form>

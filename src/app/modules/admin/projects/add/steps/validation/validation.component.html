@@ -1,0 +1,28 @@
+<form class="flex flex-col px-1 overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="projectValidationForm">
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Intitulé du risque</mat-label>
+    <input formControlName="documentName" matInput>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Informations complémentaires</mat-label>
+    <textarea formControlName="additionalInformation" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Auteur</mat-label>
+    <input formControlName="documentName" matInput>
+  </mat-form-field>
+
+  <mat-form-field class="fuse-mat-dense w-full">
+    <mat-label>Date de soumission de la fiche projet</mat-label>
+    <input formControlName="submissionDate" matInput [matDatepicker]="submissionDate">
+    <mat-datepicker-toggle matSuffix [for]="submissionDate"></mat-datepicker-toggle>
+    <mat-datepicker #submissionDate></mat-datepicker>
+  </mat-form-field>
+
+  <div class="flex justify-end">
+    <button class="px-8" mat-flat-button [color]="'primary'" [disabled]="false" type="submit"> Valider </button>
+  </div>
+</form>

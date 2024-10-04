@@ -1,0 +1,120 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div
+      class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+      <div class="flex-1 min-w-0">
+        <!-- Breadcrumbs -->
+        <div class="flex flex-wrap items-center font-medium">
+          <div>
+            <a class="whitespace-nowrap text-primary-500">Devise</a>
+          </div>
+          <div class="flex items-center ml-1 whitespace-nowrap">
+            <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_mini:chevron-right'"></mat-icon>
+            <a class="ml-1 text-primary-500">Liste</a>
+          </div>
+        </div>
+        <!-- Title -->
+        <div class="mt-2">
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+            <ng-container>
+              <h1>Liste des Devises</h1>
+            </ng-container>
+          </h2>
+        </div>
+      </div>
+      <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+        <button routerLink="/configs/nomenclatures/currency/add" class="ml-4" mat-flat-button [color]="'primary'">
+          <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+          <span class="ml-2 mr-1">Ajouter</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+
+      <!-- Products list -->
+      <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+        <ng-container>
+          <ng-container>
+            <div class="grid">
+              <!-- Header -->
+              <div
+                class="inventory-grid z-10 sticky top-0 grid gap-4 py-2 px-4 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                matSort matSortDisableClear>
+                <div>#</div>
+                <div class="hidden sm:block" [mat-sort-header]="'code'">Code</div>
+                <div class="hidden sm:block" [mat-sort-header]="'name'">Nom</div>
+                <div class="hidden sm:block" [mat-sort-header]="'description'">Description</div>
+                <div class="hidden lg:block" [mat-sort-header]="'isActive'">Active</div>
+                <div class="hidden lg:block" [mat-sort-header]="'createdAt'">Créer à</div>
+                <div class="hidden lg:block" [mat-sort-header]="'updatedAt'">Modifier à</div>
+                <div class="hidden sm:block">Actions</div>
+              </div>
+              <!-- Rows -->
+              <ng-container *ngFor="let data of currencies">
+                  <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                    <div class="truncate">
+                      {{data.id}}
+                    </div>
+                    <div class="truncate">
+                      {{data.code}}
+                    </div>
+                    <div class="truncate">
+                      {{data.name}}
+                    </div>
+                    <div class="truncate">
+                      {{data.description?data.description:'--'}}
+                    </div>
+                    <div class="truncate">
+                      {{data.active}}
+                    </div>
+                    <div class="truncate">
+                      {{data.createdAt}}
+                    </div>
+                    <div class="truncate">
+                      {{data.updatedAt}}
+                    </div>
+                    <div class="truncate">
+                      <button class="ml-2" mat-icon-button [matMenuTriggerFor]="mailMenu">
+                        <mat-icon [svgIcon]="'heroicons_outline:ellipsis-vertical'"></mat-icon>
+                      </button>
+                      <mat-menu #mailMenu="matMenu">
+                        <!-- Edit -->
+                        <button [routerLink]="'/configs/nomenclatures/currency/edit/'+data.id" mat-menu-item>
+                          <mat-icon [svgIcon]="'heroicons_outline:pencil'"></mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <!-- Delete -->
+                        <button mat-menu-item>
+                          <mat-icon class="text-red-500" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                          <span class="text-red-500">Delete</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+
+                  </div>
+                </ng-container>
+
+            </div>
+
+            <mat-paginator
+              class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+              [ngClass]="{'pointer-events-none': isLoading}" [length]="0" [pageIndex]="0" [pageSize]="0"
+              [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true">
+            </mat-paginator>
+
+          </ng-container>
+        </ng-container>
+
+        <!-- <ng-template #noProjects>
+            <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There are no products!</div>
+          </ng-template> -->
+
+      </div>
+
+    </div>
+
+  </div>

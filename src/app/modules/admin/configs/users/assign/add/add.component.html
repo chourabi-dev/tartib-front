@@ -1,0 +1,37 @@
+<div class="flex justify-between items-center">
+  <h2 class="text-xl font-bold tracking-tight leading-7 sm:leading-10 truncate">
+    <ng-container>
+      <h1>Assigner Rôle</h1>
+    </ng-container>
+  </h2>
+  <div class="flex">
+    <a (click)="onClose()" mat-icon-button [matTooltip]="'Fermer'">
+      <mat-icon class="text-red-500" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+    </a>
+  </div>
+</div>
+
+<div class="flex-auto mt-3">
+  <form class="flex flex-col overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="userRoleForm">
+
+    <mat-form-field class="fuse-mat-dense w-full">
+
+      <mat-label>Utilisateur</mat-label>
+      <mat-select formControlName="user">
+        <mat-option *ngFor="let data of users" [value]="data.id">{{data.firstname}} {{data.lastname}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Rôle</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let data of roles" [value]="data.id">{{data.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="flex justify-end">
+      <button class="px-8" mat-flat-button [color]="'primary'" type="submit"> Valider </button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,100 @@
+
+<form [formGroup]="form" (ngSubmit)="sendFORM()">
+
+    <mat-form-field  class="fuse-mat-dense w-full">
+        <mat-label>Objectif general du projet</mat-label>
+        <input  formControlName="generalObjective" matInput>
+    </mat-form-field> 
+    
+
+    <mat-form-field  class="fuse-mat-dense w-full">
+        <mat-label>Objectifs spécifiques de projets</mat-label>
+        <input  formControlName="specificObjective" matInput>
+    </mat-form-field> 
+    
+    <mat-form-field  class="fuse-mat-dense w-full">
+        <mat-label>Résultat attendu</mat-label>
+        <input  formControlName="result" matInput>
+    </mat-form-field> 
+
+    <div class="ml-2 lg:ml-0 text-xl w-full font-bold tracking-tight leading-none">Composants</div>
+
+    <table class="table"> 
+        <tr *ngFor="let c of componenets">
+            <td>{{c.title}}</td>
+            <td>{{c.description}}</td>
+            <td>{{c.cost | number}}</td>
+            <td>{{c.devise}}</td>
+            <td>
+                <button class="px-8" mat-flat-button      type="button" (click)="deleteComponent(j)" > Supprimer </button> 
+            </td>
+        </tr>
+    </table> 
+
+ 
+
+    <div formGroupName="repeater" style="margin-bottom: 25px;">
+        <div class="flex w-full gap-4">
+             
+                <mat-form-field  class="fuse-mat-dense w-full">
+                    <mat-label>Intitulé</mat-label>
+                    <input  formControlName="title" matInput>
+                </mat-form-field> 
+            
+                <mat-form-field  class="fuse-mat-dense w-full">
+                    <mat-label>Description</mat-label>
+                    <input  formControlName="description" matInput>
+                </mat-form-field> 
+           
+                <mat-form-field  class="fuse-mat-dense w-full">
+                    <mat-label>Cout</mat-label>
+                    <input type="number"  formControlName="cost" matInput>
+                </mat-form-field> 
+            
+                <mat-form-field  class="fuse-mat-dense w-full">
+                    <mat-label>Devise</mat-label>
+                    <input  formControlName="devise" matInput>
+                </mat-form-field> 
+          
+        </div>
+
+        <div>
+            <button class="px-8" mat-flat-button [color]="'accent'" [disabled]="! form.controls.repeater.valid"   type="button" (click)="submitRepeater()" > Ajouter </button> 
+        </div>
+    </div>
+
+
+ 
+    <div  class="custom-file-input fuse-mat-dense w-full">
+        <mat-label>Document cadre logique</mat-label>
+        <input type="file"  formControlName="cadreLogiqueFile" (change)="onCadreLogiqueSelected($event)">
+    </div> 
+    
+    <div class="flex w-full gap-6" style="margin-top: 15px;">
+             
+        <mat-form-field  class="fuse-mat-dense w-full">
+            <mat-label>Année debut realisation</mat-label>
+            <input type="number"  formControlName="startYear" matInput>
+        </mat-form-field> 
+    
+        <mat-form-field  class="fuse-mat-dense w-full">
+            <mat-label>Année fin realisation </mat-label>
+            <input  type="number"  formControlName="endYear" matInput>
+        </mat-form-field> 
+    </div>
+
+
+
+    <div class="custom-file-input fuse-mat-dense w-full">
+        <mat-label>Plan de travail</mat-label>
+        <input type="file"  formControlName="planTravailDocument" (change)="onPlanTravailSelected($event)" >
+    </div> 
+
+
+
+    <div style="margin-top: 15px;">
+        <button class="px-8" mat-flat-button [color]="'accent'" [disabled]="! form.valid"   type="submit" > Ajouter </button> 
+    </div>
+    
+</form>
+ 

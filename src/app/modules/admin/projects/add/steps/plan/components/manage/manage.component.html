@@ -1,0 +1,58 @@
+<div class="flex justify-between items-center">
+  <h2 class="text-xl font-bold tracking-tight leading-7 sm:leading-10 truncate">
+    <ng-container>
+      <h1>{{isEdit?"Modifier":"Ajouter"}} Composante</h1>
+    </ng-container>
+  </h2>
+  <div class="flex">
+    <a (click)="onClose()" mat-icon-button [matTooltip]="'Fermer'">
+      <mat-icon class="text-red-500" [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+    </a>
+  </div>
+</div>
+
+<div class="flex-auto mt-3">
+  <form class="flex flex-col overflow-hidden" (ngSubmit)="validSubmit()" [formGroup]="componentForm">
+
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Project</mat-label>
+      <mat-select formControlName="project">
+        <mat-option *ngFor="let data of projects" [value]="data.id">{{data.simepCode}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="fuse-mat-dense select-none">
+      <mat-checkbox class="mb-2" formControlName="subComponent" [color]="'primary'">Sous composante</mat-checkbox>
+    </div>
+
+    <ng-container *ngIf="value.subComponent">
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Composante</mat-label>
+        <mat-select formControlName="component">
+            <mat-option *ngFor="let data of components" [value]="data.id">{{data.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+
+    <div class="flex w-full gap-4">
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Nom</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+      <mat-form-field class="fuse-mat-dense w-full">
+        <mat-label>Code</mat-label>
+        <input formControlName="code" matInput>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="fuse-mat-dense w-full">
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"></textarea>
+    </mat-form-field>
+
+    <div class="flex justify-end">
+      <button class="px-8" mat-flat-button [color]="'primary'" type="submit"> {{isEdit?"Modifier":"Ajouter"}} </button>
+    </div>
+
+  </form>
+</div>
